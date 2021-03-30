@@ -10,7 +10,10 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.0",
-    "react-globe.gl": "2.14.6"
+    "react-globe.gl": "2.14.6",
+    "@material-ui/lab": "latest",
+    "@material-ui/icons": "latest",
+    "@material-ui/core": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
