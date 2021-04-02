@@ -13,7 +13,8 @@
     "react-globe.gl": "2.14.6",
     "@material-ui/lab": "latest",
     "@material-ui/icons": "latest",
-    "@material-ui/core": "latest"
+    "@material-ui/core": "latest",
+    "react-bootstrap": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

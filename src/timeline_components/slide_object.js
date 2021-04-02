@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: "6px 16px",
   },
+  description: {
+    fontSize: "12px",
+    align: "left",
+  },
+
   secondaryTail: {
     backgroundColor: theme.palette.secondary.main,
   },
@@ -41,10 +46,9 @@ function RenderItem({ values }) {
               </TimelineSeparator>
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
-                  <Typography variant="h6" component="h1">
-                    Event year
+                  <Typography class={classes.label}>
+                    YYYY: Event name
                   </Typography>
-                  <Typography>Short event description</Typography>
                 </Paper>
               </TimelineContent>
             </TimelineItem>
@@ -54,13 +58,13 @@ function RenderItem({ values }) {
     });
 
     return renderList;
-  }else{
-      return <h1> No results found</h1>
+  } else {
+    return <h1> No results found</h1>;
   }
 }
 
-function CustomizedTimeline({data}) {
+function CustomizedTimeline({ data }) {
   return <RenderItem values={data} />;
 }
 
-export default CustomizedTimeline
+export default CustomizedTimeline;

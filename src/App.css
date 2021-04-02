@@ -1,13 +1,12 @@
 .container{
   display: flex;
+  min-height: 100rem;
 }
 
 .scroller{
   overflow-y: scroll;
-  height: 100%;
-  width: 20%;
 }
 
 .globe-container{
-  width: 80%;
+  max-width: 44px;
 }
