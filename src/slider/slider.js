@@ -3,6 +3,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import "./slider.css";
+import useWindowDimensions from "../services/useWindowDimensions";
 
 const useStyles = makeStyles({
   root: {
@@ -42,25 +43,33 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 //Tick Marks, can probably put this into another file
-const mark = [
+const marks = [
   {
-    value: 1,
-    label: "Start",
+    value: 100,
+    label: "100",
   },
   {
-    value: 1000,
-    label: "Middle",
+    value: 200,
+    label: "200",
   },
   {
-    value: 2021,
-    label: "End",
+    value: 300,
+    label: "300",
+  },
+  {
+    value: 400,
+    label: "400",
+  },
+  {
+    value: 500,
+    label: "500",
   },
 ];
 
 //Returns whatever value slider is left off on
 function valuetext(value) {
   //   console.log(value);
-  return `${value}°C`;
+  return `${value}`;
 }
 
 // Getting value of slider, there is a slight issue with this
@@ -68,7 +77,7 @@ function valuetext(value) {
 //   console.log(value);
 // };
 
-export default function DiscreteSlider() {
+const DiscreteSlider = ({markers}) => {
   const classes = useStyles();
 
   return (
@@ -79,16 +88,18 @@ export default function DiscreteSlider() {
       </Typography>
       {/* The actual slider values */}
       <PrettoSlider
-        defaultValue={1001}
+        defaultValue={100}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-small-steps"
+        aria-labelledby="discrete-slider-custom"
         step={100} //Increments
-        marks={mark} //Implement the tickers
-        min={1} //Minimum Value
-        max={2021} //Maximum Value
+        marks={marks} //Implement the tickers
+        min={100} //Minimum Value
+        max={500} //Maximum Value
         valueLabelDisplay="auto" //Displays value as you slide
         // onChange={getValue}
       />
     </div>
   );
 }
+
+export default DiscreteSlider;

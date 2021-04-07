@@ -35,9 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
 function App() {
   const classes = useStyles();
 
@@ -47,7 +44,6 @@ function App() {
       {/* <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-
           </Typography>
         </Toolbar>
       </AppBar> */}
@@ -61,19 +57,20 @@ function App() {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <CustomizedTimeline data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} />
+        <CustomizedTimeline
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
+        />
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <GlobeObject />
       </main>
 
-    <div className="App">
-      {/* Div is for test purposes, remove when not needed */}
       <div className="testContainer">
         <DiscreteSlider />
       </div>
-
+    
     </div>
   );
 }
