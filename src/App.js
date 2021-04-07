@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
+import DiscreteSlider from "./slider/slider";
 
 const drawerWidth = 230;
 
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
+
+
+
 
 function App() {
   const classes = useStyles();
@@ -63,6 +67,13 @@ function App() {
         <div className={classes.toolbar} />
         <GlobeObject />
       </main>
+
+    <div className="App">
+      {/* Div is for test purposes, remove when not needed */}
+      <div className="testContainer">
+        <DiscreteSlider />
+      </div>
+
     </div>
   );
 }
