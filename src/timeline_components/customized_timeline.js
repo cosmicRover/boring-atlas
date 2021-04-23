@@ -10,6 +10,8 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
+//TODO: re-design this to match provided design docs
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: "6px 16px",

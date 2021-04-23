@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
 import GlobeObject from "./globe_component/globe_object";
-import CustomizedTimeline from "./timeline_components/slide_object";
+import CustomizedTimeline from "./timeline_components/customized_timeline";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
-import DiscreteSlider from "./slider/slider";
+import DiscreteSlider from "./slider/discrete_slider";
+import useWindowDimensions from "./services/useWindowDimensions";
 
 const drawerWidth = 230;
 
@@ -37,40 +38,37 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const { height, width } = useWindowDimensions();
+
+  var timelinePositionStyle = {
+    backgroundColor: "transparent",
+    height: `${(height - 228).toString()}px`,
+    width: `250px`,
+    position: "absolute",
+    top: "28px",
+    left: "28px",
+    // overflow: 'scroll'
+  };
+
+  var sliderPositionStyle = {
+    backgroundColor: "transparent",
+    height: `100px`,
+    width: `${(width - 200).toString()}px`,
+    position: "absolute",
+    bottom: "28px",
+    left: "130px",
+    right: "130px"
+  };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <CustomizedTimeline
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
-        />
-      </Drawer>
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <GlobeObject />
-      </main>
-
-      <div className="testContainer">
+    <div>
+      <GlobeObject />
+      <div style={timelinePositionStyle}>
+        <CustomizedTimeline data={[1, 2, 3, 4]} />
+      </div>
+      <div style={sliderPositionStyle}>
         <DiscreteSlider />
       </div>
-    
     </div>
   );
 }

@@ -13,8 +13,8 @@ const GlobeObject = (_) => {
       globeImageUrl="https://res.cloudinary.com/dmhit0ltx/image/upload/v1613871735/3_no_ice_clouds_8k_cnbuqw.jpg"
       bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
       backgroundImageUrl="https://res.cloudinary.com/dmhit0ltx/image/upload/v1617328479/back_rs487m.png"
-      height={(height - 120)}
-      width={(width - 350)}
+      height={(height)}
+      width={(width)}
     />
   );
 };
