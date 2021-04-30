@@ -3,17 +3,26 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import useWindowDimensions from '../services/useWindowDimensions';
+import { HistoryTwoTone, PlayCircleFilledWhite } from '@material-ui/icons';
+import './slider.css';
 
 const useStyles = makeStyles({
   root: {
     width: 800, //Changes length of slider
   },
+  mark: {
+    color: 'rgba(243, 163, 17, 1)',
+    fontSize: '20px',
+    '&:nth-child(even)': {
+      width: '10px',
+      height: '10px',
+    },
+  },
 });
-
 //? Probably needs changes
 const PrettoSlider = withStyles({
   root: {
-    color: 'rgba(243, 163, 17, 1);', //Insert color hexcode here
+    color: 'rgba(243, 163, 17, 1)', //Insert color hexcode here
     height: 8,
   },
   thumb: {
@@ -32,12 +41,23 @@ const PrettoSlider = withStyles({
     left: 'calc(-50% + 4px)',
   },
   track: {
+    marginBottom: -8,
     height: 2, //Changes height of the selected area of slider
     borderRadius: 4,
   },
   rail: {
     height: 2, //Changes height of the non-selected area of slider
     borderRadius: 2,
+    marginTop: 3,
+  },
+  mark: {
+    '&:last-child': {
+      width: '10px',
+      height: '10px',
+    },
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
   },
 })(Slider);
 
@@ -58,6 +78,14 @@ const marks = [
   {
     value: 400,
     label: '400',
+  },
+  {
+    value: 150,
+    label: '^',
+  },
+  {
+    value: 250,
+    label: 'here',
   },
   {
     value: 500,
@@ -81,10 +109,6 @@ const DiscreteSlider = ({ markers }) => {
 
   return (
     <div>
-      {/* Title of Slider, not sure if we will need it*/}
-      <Typography id="discrete-slider-small-steps" gutterBottom>
-        Boring Atlas
-      </Typography>
       {/* The actual slider values */}
       <PrettoSlider
         defaultValue={100}
@@ -92,6 +116,7 @@ const DiscreteSlider = ({ markers }) => {
         aria-labelledby="discrete-slider-custom"
         step={100} //Increments
         marks={marks} //Implement the tickers
+        classes={{ markLabel: classes.mark }}
         min={100} //Minimum Value
         max={500} //Maximum Value
         valueLabelDisplay="auto" //Displays value as you slide
