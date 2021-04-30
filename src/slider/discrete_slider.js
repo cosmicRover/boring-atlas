@@ -1,8 +1,8 @@
-import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import useWindowDimensions from "../services/useWindowDimensions";
+import React from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import useWindowDimensions from '../services/useWindowDimensions';
 
 const useStyles = makeStyles({
   root: {
@@ -13,31 +13,31 @@ const useStyles = makeStyles({
 //? Probably needs changes
 const PrettoSlider = withStyles({
   root: {
-    color: "#9ddfd3", //Insert color hexcode here
+    color: 'rgba(243, 163, 17, 1);', //Insert color hexcode here
     height: 8,
   },
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
-    marginTop: -8,
-    marginLeft: -12,
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
+    backgroundColor: 'background: rgba(243, 163, 17, 1);',
+    border: '2px solid currentColor',
+    marginTop: -12, //Where the thumb resides on slider
+    marginLeft: -12, //Where the thumb resides on slider
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'inherit',
     },
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 4px)",
+    left: 'calc(-50% + 4px)',
   },
   track: {
-    height: 6, //Changes height of the selected area of slider
+    height: 2, //Changes height of the selected area of slider
     borderRadius: 4,
   },
   rail: {
-    height: 6, //Changes height of the non-selected area of slider
-    borderRadius: 4,
+    height: 2, //Changes height of the non-selected area of slider
+    borderRadius: 2,
   },
 })(Slider);
 
@@ -45,23 +45,23 @@ const PrettoSlider = withStyles({
 const marks = [
   {
     value: 100,
-    label: "100",
+    label: '100',
   },
   {
     value: 200,
-    label: "200",
+    label: '200',
   },
   {
     value: 300,
-    label: "300",
+    label: '300',
   },
   {
     value: 400,
-    label: "400",
+    label: '400',
   },
   {
     value: 500,
-    label: "500",
+    label: '500',
   },
 ];
 
@@ -76,7 +76,7 @@ function valuetext(value) {
 //   console.log(value);
 // };
 
-const DiscreteSlider = ({markers}) => {
+const DiscreteSlider = ({ markers }) => {
   const classes = useStyles();
 
   return (
@@ -99,6 +99,6 @@ const DiscreteSlider = ({markers}) => {
       />
     </div>
   );
-}
+};
 
 export default DiscreteSlider;
