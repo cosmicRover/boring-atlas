@@ -1,61 +1,39 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Timeline from "@material-ui/lab/Timeline";
-import TimelineItem from "@material-ui/lab/TimelineItem";
-import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
-import TimelineConnector from "@material-ui/lab/TimelineConnector";
-import TimelineContent from "@material-ui/lab/TimelineContent";
-import TimelineDot from "@material-ui/lab/TimelineDot";
-import FastfoodIcon from "@material-ui/icons/Fastfood";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import CircularIcon from "./circular_icon";
+import icon1 from "../assets/icon1.png";
+import "../App.css";
 
 //TODO: re-design this to match provided design docs
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: "6px 16px",
+const useStyles = makeStyles({
+  root: {
+    width: "100%",
+    maxWidth: 500,
+    color: "white",
   },
-  description: {
-    fontSize: "12px",
-    align: "left",
-  },
+});
 
-  secondaryTail: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-}));
-
-function RenderItem({ values }) {
+function RenderItem({ values, onClicked }) {
   const classes = useStyles();
 
   if (values) {
     //loop through each item and add to render list
     const renderList = values.map((index, item) => {
       return (
-        <Timeline align="alternate" key={index}>
-          <div
-            onClick={() =>
-              console.log(`clicked key ${index} pass onClickHandle here`)
-            }
-          >
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot>
-                  <FastfoodIcon />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Paper elevation={3} className={classes.paper}>
-                  <Typography class={classes.label}>
-                    YYYY: Event name
-                  </Typography>
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
+        <div class="centerButtonText" onClick={() => onClicked(index)}>
+          <CircularIcon imageUrl={icon1} />
+          <div className={classes.root}>
+            <Typography variant="h6" gutterBottom>
+              500 BCE
+            </Typography>
+            <Typography variant="subtitle2" gutterBottom>
+              subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Quos blanditiis tenetur
+            </Typography>
           </div>
-        </Timeline>
+        </div>
       );
     });
 
@@ -65,8 +43,8 @@ function RenderItem({ values }) {
   }
 }
 
-function CustomizedTimeline({ data }) {
-  return <RenderItem values={data} />;
+function CustomizedTimeline({ data, onClicked }) {
+  return <RenderItem values={data} onClicked={onClicked} />;
 }
 
 export default CustomizedTimeline;

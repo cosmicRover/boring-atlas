@@ -2,75 +2,73 @@ import React from "react";
 import "./App.css";
 import GlobeObject from "./globe_component/globe_object";
 import CustomizedTimeline from "./timeline_components/customized_timeline";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import DiscreteSlider from "./slider/discrete_slider";
 import useWindowDimensions from "./services/useWindowDimensions";
+import logo from "./assets/logo.svg";
 
-const drawerWidth = 230;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    marginLeft: 8,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
-
-function App() {
-  const classes = useStyles();
+const App = () => {
   const { height, width } = useWindowDimensions();
+
+  function fetchEvents(era) {
+    console.log(era);
+
+    const requestOptions = {
+      method: "POST",
+      // headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({
+        era: "3000BCE",
+      }),
+    };
+
+    fetch(
+      "https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then(function (data) {
+        const items = data[0]["event"];
+
+        //add these do data using hooks
+        items.forEach((ele, _) => {
+          console.log(ele);
+        });
+      });
+  }
 
   var timelinePositionStyle = {
     backgroundColor: "transparent",
     height: `${(height - 228).toString()}px`,
-    width: `250px`,
+    width: `${(width / 4).toString()}px`,
     position: "absolute",
     top: "28px",
     left: "28px",
-    // overflow: 'scroll'
+    overflow: "auto",
   };
 
   var sliderPositionStyle = {
     backgroundColor: "transparent",
     height: `100px`,
-    width: `${(width - 200).toString()}px`,
+    width: `${(width / 1.5).toString()}px`,
     position: "absolute",
     bottom: "28px",
     left: "130px",
-    right: "130px"
+    right: "130px",
   };
 
   return (
     <div>
       <GlobeObject />
       <div style={timelinePositionStyle}>
-        <CustomizedTimeline data={[1, 2, 3, 4]} />
+        <CustomizedTimeline
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          onClicked={(e) => fetchEvents(e)}
+        />
       </div>
       <div style={sliderPositionStyle}>
         <DiscreteSlider />
       </div>
     </div>
   );
-}
+};
 
 export default App;
