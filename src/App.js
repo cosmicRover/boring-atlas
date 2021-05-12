@@ -1,78 +1,74 @@
 import React from "react";
 import "./App.css";
 import GlobeObject from "./globe_component/globe_object";
-import CustomizedTimeline from "./timeline_components/slide_object";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import DiscreteSlider from "./slider/slider";
+import CustomizedTimeline from "./timeline_components/customized_timeline";
+import DiscreteSlider from "./slider/discrete_slider";
+import useWindowDimensions from "./services/useWindowDimensions";
+import logo from "./assets/logo.svg";
 
-const drawerWidth = 230;
+const App = () => {
+  const { height, width } = useWindowDimensions();
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    marginLeft: 8,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
+  function fetchEvents(era) {
+    console.log(era);
 
-function App() {
-  const classes = useStyles();
+    const requestOptions = {
+      method: "POST",
+      // headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({
+        era: "3000BCE",
+      }),
+    };
+
+    fetch(
+      "https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then(function (data) {
+        const items = data[0]["event"];
+
+        //add these do data using hooks
+        items.forEach((ele, _) => {
+          console.log(ele);
+        });
+      });
+  }
+
+  var timelinePositionStyle = {
+    backgroundColor: "transparent",
+    height: `${(height - 228).toString()}px`,
+    width: `${(width / 4).toString()}px`,
+    position: "absolute",
+    top: "28px",
+    left: "28px",
+    overflow: "auto",
+  };
+
+  var sliderPositionStyle = {
+    backgroundColor: "transparent",
+    height: `100px`,
+    width: `${(width / 1.5).toString()}px`,
+    position: "absolute",
+    bottom: "28px",
+    left: "130px",
+    right: "130px",
+  };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
+    <div>
+      <GlobeObject />
+      <div style={timelinePositionStyle}>
         <CustomizedTimeline
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          onClicked={(e) => fetchEvents(e)}
         />
-      </Drawer>
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <GlobeObject />
-      </main>
-
-      <div className="testContainer">
+      </div>
+      <div style={sliderPositionStyle}>
         <DiscreteSlider />
       </div>
-    
     </div>
   );
-}
+};
 
 export default App;

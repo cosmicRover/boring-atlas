@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import "./slider.css";
 import useWindowDimensions from "../services/useWindowDimensions";
 
 const useStyles = makeStyles({
@@ -81,7 +80,7 @@ const DiscreteSlider = ({markers}) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       {/* Title of Slider, not sure if we will need it*/}
       <Typography id="discrete-slider-small-steps" gutterBottom>
         Boring Atlas
