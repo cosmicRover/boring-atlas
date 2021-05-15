@@ -3,10 +3,10 @@ import {React, useRef, useState, useEffect} from "react";
 import "../App.css";
 import useWindowDimensions from "../services/useWindowDimensions";
 
-const GlobeObject = (_) => {
+const GlobeObject = ({globeEl}) => {
    
   //TODO clean these up. might need to pass globeEl from parent class
-  const globeEl = useRef();
+  
    const [countries, setCountries] = useState({ features: [] });
    const [altitude, setAltitude] = useState(0.1);
    const [transitionDuration, setTransitionDuration] = useState(1000);
@@ -26,15 +26,6 @@ const GlobeObject = (_) => {
   //        }, 3000);
   //      });
   //  }, []);
-
-   useEffect(() => {
-     // Auto-rotate
-     globeEl.current.controls().autoRotate = true;
-     globeEl.current.controls().autoRotateSpeed = 0.9;
-
-     //use this to zoom into location
-    //  globeEl.current.pointOfView({lat:-33.865143, lng:151.209900, altitude: 0.5 }, 5000);
-   }, []);
 
 
   //pass params

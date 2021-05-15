@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import "./App.css";
 import GlobeObject from "./globe_component/globe_object";
 import CustomizedTimeline from "./timeline_components/customized_timeline";
@@ -8,6 +8,25 @@ import logo from "./assets/logo.svg";
 
 const App = () => {
   const { height, width } = useWindowDimensions();
+  const [eventItems, setEventItem] = useState([])
+  const globeEl = useRef();
+
+  useEffect(() => {
+    // Auto-rotate
+    globeEl.current.controls().autoRotate = true;
+    globeEl.current.controls().autoRotateSpeed = 0.1;
+
+    //use this to zoom into location 
+  }, []);
+
+  //zooms in to a particular lat, lon on the globe
+  function focusOnEvent(lat, lon, alt){
+    globeEl.current.pointOfView(
+      { lat: lat, lng: lon, altitude: alt },
+      5000
+    );
+    globeEl.current.controls().autoRotate = false;
+  }
 
   function fetchEvents(era) {
     console.log(era);
@@ -16,7 +35,7 @@ const App = () => {
       method: "POST",
       // headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
-        era: "3000BCE",
+        era: "3100BCE", //get era from the slider
       }),
     };
 
@@ -26,12 +45,16 @@ const App = () => {
     )
       .then((response) => response.json())
       .then(function (data) {
-        const items = data[0]["event"];
+        const items = data[0]["events"];
 
         //add these do data using hooks
         items.forEach((ele, _) => {
-          console.log(ele);
+          var items = ele.split(";");
+          console.log(items);
         });
+
+        //pass lat, lon from the json along with an altitude to zoom in to the map
+        focusOnEvent(-33.865143, 151.2099, 0.5)
       });
   }
 
@@ -57,7 +80,7 @@ const App = () => {
 
   return (
     <div>
-      <GlobeObject />
+      <GlobeObject globeEl={globeEl}/>
       <div style={timelinePositionStyle}>
         <CustomizedTimeline
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
