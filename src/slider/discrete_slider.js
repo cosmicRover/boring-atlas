@@ -9,6 +9,7 @@ import {
   Rotate90DegreesCcw,
 } from '@material-ui/icons';
 import './slider.css';
+import { marks } from './marks.js';
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +29,7 @@ const PrettoSlider = withStyles({
   root: {
     color: 'rgba(243, 163, 17, 1)', //Insert color hexcode here
   },
+  //Thumb styling
   thumb: {
     height: 24,
     width: 24,
@@ -61,44 +63,6 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 //Tick Marks, can probably put this into another file
-const marks = [
-  {
-    value: 100,
-    label: '100',
-  },
-  {
-    value: 150,
-    label: '150',
-  },
-  {
-    value: 200,
-    label: '200',
-  },
-  {
-    value: 250,
-    label: '250',
-  },
-  {
-    value: 300,
-    label: '300',
-  },
-  {
-    value: 350,
-    label: '350',
-  },
-  {
-    value: 400,
-    label: '400',
-  },
-  {
-    value: 450,
-    label: '450',
-  },
-  {
-    value: 500,
-    label: '500',
-  },
-];
 
 //Returns whatever value slider is left off on
 function valuetext(value) {
@@ -118,14 +82,14 @@ const DiscreteSlider = ({ markers }) => {
     <div>
       {/* The actual slider values */}
       <PrettoSlider
-        defaultValue={100}
+        defaultValue={-500}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
-        step={50} //Increments
+        step={100} //Increments
         marks={marks} //Implement the tickers
         classes={{ markLabel: classes.mark }}
-        min={100} //Minimum Value
-        max={500} //Maximum Value
+        min={-3000} //Minimum Value
+        max={2000} //Maximum Value
         valueLabelDisplay="auto" //Displays value as you slide
         // onChange={getValue}
       />

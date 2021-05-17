@@ -1,17 +1,19 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import CircularIcon from "./circular_icon";
-import icon1 from "../assets/icon1.png";
-import "../App.css";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { TimelineConnector } from '@material-ui/lab';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import CircularIcon from './circular_icon';
+import icon1 from '../assets/icon1.png';
+import '../App.css';
 
 //TODO: re-design this to match provided design docs
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 500,
-    color: "white",
+    color: 'white',
   },
 });
 
@@ -24,6 +26,7 @@ function RenderItem({ values, onClicked }) {
       return (
         <div class="centerButtonText" onClick={() => onClicked(index)}>
           <CircularIcon imageUrl={icon1} />
+          <TimelineConnector />
           <div className={classes.root}>
             <Typography variant="h6" gutterBottom>
               500 BCE
