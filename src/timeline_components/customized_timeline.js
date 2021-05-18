@@ -1,17 +1,24 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import CircularIcon from "./circular_icon";
-import "../App.css";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { TimelineConnector } from '@material-ui/lab';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import CircularIcon from './circular_icon';
+import icon1 from '../assets/icon1.png';
+import '../App.css';
+
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 500,
+
+    color: 'white',
+
     color: "white",
     margin: "1px",
     fontSize: "5px",
+
   },
 });
 
@@ -23,7 +30,12 @@ function RenderItem({ values, onClicked }) {
     const renderList = values.map((item, index) => {
       return (
         <div class="centerButtonText" onClick={() => onClicked(index)}>
+
+          <CircularIcon imageUrl={icon1} />
+          <TimelineConnector />
+
           <CircularIcon imageUrl={item.type} />
+
           <div className={classes.root}>
             <Typography component="div">
               <Box fontWeight="fontWeightBold" m={1}>
