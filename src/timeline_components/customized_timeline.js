@@ -1,17 +1,17 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import CircularIcon from "./circular_icon";
-import icon1 from "../assets/icon1.png";
 import "../App.css";
-
-//TODO: re-design this to match provided design docs
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
     maxWidth: 500,
     color: "white",
+    margin: "1px",
+    fontSize: "5px",
   },
 });
 
@@ -20,17 +20,24 @@ function RenderItem({ values, onClicked }) {
 
   if (values) {
     //loop through each item and add to render list
-    const renderList = values.map((index, item) => {
+    const renderList = values.map((item, index) => {
       return (
         <div class="centerButtonText" onClick={() => onClicked(index)}>
-          <CircularIcon imageUrl={icon1} />
+          <CircularIcon imageUrl={item.type} />
           <div className={classes.root}>
-            <Typography variant="h6" gutterBottom>
-              500 BCE
-            </Typography>
-            <Typography variant="subtitle2" gutterBottom>
-              subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Quos blanditiis tenetur
+            <Typography component="div">
+              <Box fontWeight="fontWeightBold" m={1}>
+                {item.date}
+              </Box>
+              <Box
+                fontWeight="fontWeightLight"
+                fontFamily="Montserrat"
+                fontSize="12px"
+                m={1}
+                lineHeight={0.95}
+              >
+                {item.title}
+              </Box>
             </Typography>
           </div>
         </div>
