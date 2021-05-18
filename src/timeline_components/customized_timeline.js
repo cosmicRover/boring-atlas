@@ -6,7 +6,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import CircularIcon from './circular_icon';
 import icon1 from '../assets/icon1.png';
 import '../App.css';
-
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
@@ -15,10 +15,9 @@ const useStyles = makeStyles({
 
     color: 'white',
 
-    color: "white",
-    margin: "1px",
-    fontSize: "5px",
-
+    color: 'white',
+    margin: '1px',
+    fontSize: '5px',
   },
 });
 
@@ -30,8 +29,6 @@ function RenderItem({ values, onClicked }) {
     const renderList = values.map((item, index) => {
       return (
         <div class="centerButtonText" onClick={() => onClicked(index)}>
-
-          <CircularIcon imageUrl={icon1} />
           <TimelineConnector />
 
           <CircularIcon imageUrl={item.type} />
