@@ -6,6 +6,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import CircularIcon from './circular_icon';
 import icon1 from '../assets/icon1.png';
 import '../App.css';
+import './timeline.css';
 
 //TODO: re-design this to match provided design docs
 
@@ -24,9 +25,9 @@ function RenderItem({ values, onClicked }) {
     //loop through each item and add to render list
     const renderList = values.map((index, item) => {
       return (
-        <div class="centerButtonText" onClick={() => onClicked(index)}>
+        <div className="centerButtonText" onClick={() => onClicked(index)}>
           <CircularIcon imageUrl={icon1} />
-          <TimelineConnector />
+          <div className="vertical-bar"></div>
           <div className={classes.root}>
             <Typography variant="h6" gutterBottom>
               500 BCE
