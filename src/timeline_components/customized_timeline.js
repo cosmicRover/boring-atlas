@@ -6,15 +6,24 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import CircularIcon from './circular_icon';
 import icon1 from '../assets/icon1.png';
 import '../App.css';
+
 import './timeline.css';
 
 //TODO: re-design this to match provided design docs
+
+import Box from '@material-ui/core/Box';
+
 
 const useStyles = makeStyles({
   root: {
     width: '100%',
     maxWidth: 500,
+
     color: 'white',
+
+    color: 'white',
+    margin: '1px',
+    fontSize: '5px',
   },
 });
 
@@ -23,18 +32,32 @@ function RenderItem({ values, onClicked }) {
 
   if (values) {
     //loop through each item and add to render list
-    const renderList = values.map((index, item) => {
+    const renderList = values.map((item, index) => {
       return (
+
         <div className="centerButtonText" onClick={() => onClicked(index)}>
           <CircularIcon imageUrl={icon1} />
           <div className="vertical-bar"></div>
+
+        <div class="centerButtonText" onClick={() => onClicked(index)}>
+          <TimelineConnector />
+
+          <CircularIcon imageUrl={item.type} />
+
           <div className={classes.root}>
-            <Typography variant="h6" gutterBottom>
-              500 BCE
-            </Typography>
-            <Typography variant="subtitle2" gutterBottom>
-              subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Quos blanditiis tenetur
+            <Typography component="div">
+              <Box fontWeight="fontWeightBold" m={1}>
+                {item.date}
+              </Box>
+              <Box
+                fontWeight="fontWeightLight"
+                fontFamily="Montserrat"
+                fontSize="12px"
+                m={1}
+                lineHeight={0.95}
+              >
+                {item.title}
+              </Box>
             </Typography>
           </div>
         </div>

@@ -12,11 +12,11 @@
 }
 
 .centerButtonText{
-  float:left;
+  float:column;
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
-  margin: 8px;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 24px;
 }
 
 /*customized scrollbar */
