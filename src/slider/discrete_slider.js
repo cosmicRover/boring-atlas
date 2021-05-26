@@ -62,8 +62,6 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-//Tick Marks, can probably put this into another file
-
 //Returns whatever value slider is left off on
 function valuetext(value) {
   if (value === 0) {

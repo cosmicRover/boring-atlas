@@ -1,0 +1,11 @@
+.vertical-bar {
+  height: 2em;
+  border-left: 2px solid rgba(243, 163, 17, 1);
+  position: relative;
+  top: 4.25em;
+  right: 2.1em;
+}
+
+.vertical-bar:last-child {
+  border: 0;
+}
