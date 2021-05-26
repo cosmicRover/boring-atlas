@@ -52,14 +52,14 @@
 /* Logo */
 #logo {
   position: absolute;
-  top: 10px;
-  left: 20px;
+  top: -24px;
+  left: 0px;
 }
 
 /* Year Ticker */
 #year {
   position: absolute;
-  top: 7%;
-  left: 41%;
+  left: 50%;
+  margin-left: -250px;
   color: rgba(243, 163, 17, 1);
 }
