@@ -20,9 +20,6 @@ const useStyles = makeStyles({
     color: 'white',
     margin: '1px',
     fontSize: '5px',
-
-
-
   },
 });
 

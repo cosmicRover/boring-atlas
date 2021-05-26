@@ -111,9 +111,9 @@ const App = () => {
   }
 
   var timelinePositionStyle = {
-    backgroundColor: "transparent",
+    backgroundColor: "RGBA(20, 39, 59, 0.5)",
     height: `${(height - 228).toString()}px`,
-    width: `${(width / 4).toString()}px`,
+    width: `${100}`,
     position: "absolute",
     top: "28px",
     left: "28px",
@@ -121,14 +121,13 @@ const App = () => {
   };
 
   var sliderPositionStyle = {
-    backgroundColor: "transparent",
+    backgroundColor: "RGBA(20, 39, 59, 0.5)",
     height: `100px`,
-    width: `${(width / 1.5).toString()}px`,
+    width: `${100}`,
     position: "absolute",
     bottom: "28px",
     left: "130px",
     right: "130px",
-    // display: "flex",
   };
 
   return (
