@@ -1,0 +1,14 @@
+.boxImg {
+  display: block;
+  margin: auto;
+  height: 40%;
+  width: 90%;
+  border-radius: 4%;
+}
+
+.boxVideo {
+  display: block;
+  margin: auto;
+  width: 90%;
+  border-radius: 4%;
+}

@@ -1,15 +1,15 @@
-import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import useWindowDimensions from "../services/useWindowDimensions";
+import React from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import useWindowDimensions from '../services/useWindowDimensions';
 import {
   HistoryTwoTone,
   PlayCircleFilledWhite,
   Rotate90DegreesCcw,
-} from "@material-ui/icons";
-import "./slider.css";
-import { marks } from "./marks.js";
+} from '@material-ui/icons';
+import './slider.css';
+import { marks } from './marks.js';
 
 const useStyles = makeStyles({
   root: {
@@ -17,33 +17,33 @@ const useStyles = makeStyles({
   },
   mark: {
     //Here for the text of timeline
-    color: "rgba(243, 163, 17, 1)",
-    fontSize: "20px",
+    color: 'rgba(243, 163, 17, 1)',
+    fontSize: '20px',
     // marginLeft: '5px', //Aligning the text (when un-rotated)
-    marginLeft: "-8px", //Aligning the text (rotated)
-    transform: "rotate(-45deg)",
+    marginLeft: '-8px', //Aligning the text (rotated)
+    transform: 'rotate(-45deg)',
   },
 });
 //? Probably needs changes
 const PrettoSlider = withStyles({
   root: {
-    color: "rgba(243, 163, 17, 1)", //Insert color hexcode here
+    color: 'rgba(243, 163, 17, 1)', //Insert color hexcode here
   },
   //Thumb styling
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: "background: rgba(243, 163, 17, 1);",
-    border: "2px solid currentColor",
+    backgroundColor: 'background: rgba(243, 163, 17, 1);',
+    border: '2px solid currentColor',
     marginTop: -12, //Where the thumb resides on slider
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'inherit',
     },
   },
   active: {},
   //The label for when point is selected
   valueLabel: {
-    left: "calc(-50% + 4px)",
+    left: 'calc(-50% + 4px)',
   },
   track: {
     height: 2, //Changes height of the selected area of slider
@@ -55,10 +55,10 @@ const PrettoSlider = withStyles({
   },
   mark: {
     //Mark dots styling
-    bottom: "8px",
-    width: "10px",
-    height: "10px",
-    borderRadius: "50%",
+    bottom: '8px',
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
   },
 })(Slider);
 

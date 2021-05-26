@@ -1,23 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./App.css";
-import GlobeObject from "./globe_component/globe_object";
-import CustomizedTimeline from "./timeline_components/customized_timeline";
-import DiscreteSlider from "./slider/discrete_slider";
-import useWindowDimensions from "./services/useWindowDimensions";
-import logo from "./assets/logo.svg";
-import Popper from "./popup/popper";
-import "react-sliding-pane/dist/react-sliding-pane.css";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import React, { useState, useRef, useEffect } from 'react';
+import './App.css';
+import GlobeObject from './globe_component/globe_object';
+import CustomizedTimeline from './timeline_components/customized_timeline';
+import DiscreteSlider from './slider/discrete_slider';
+import useWindowDimensions from './services/useWindowDimensions';
+import logo from './assets/logo.svg';
+import Popper from './popup/popper';
+import 'react-sliding-pane/dist/react-sliding-pane.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   paper: {
-    background: "RGBA(20, 39, 59, 0.5)",
-    color: "white",
-    width: "517px",
-    height: "50%",
+    background: 'RGBA(20, 39, 59, 0.5)',
+    color: 'white',
+    width: '517px',
+    height: '80%',
   },
 });
 
@@ -40,7 +40,7 @@ const App = () => {
     globeEl.current.controls().autoRotate = true;
     globeEl.current.controls().autoRotateSpeed = 0.1;
 
-    fetchEvents("3000BCE");
+    fetchEvents('3000BCE');
   }, []);
 
   function handleOnPressed(index) {
@@ -73,8 +73,8 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -93,7 +93,7 @@ const App = () => {
   }
 
   //helper fucntion to plot the data
-  const [yearLabelText, setYearLabelText] = useState("3000BCE");
+  const [yearLabelText, setYearLabelText] = useState('3000BCE');
 
   function fetchEvents(era) {
     console.log(`fetching era: ${era}`);
@@ -102,7 +102,7 @@ const App = () => {
     setEventItem([]);
 
     const requestOptions = {
-      method: "POST",
+      method: 'POST',
       // headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         era: era, //get era from the slider
@@ -110,7 +110,7 @@ const App = () => {
     };
 
     fetch(
-      "https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook",
+      'https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook',
       requestOptions
     ).then(function (response) {
       if (response.status === 200) {
@@ -121,15 +121,15 @@ const App = () => {
             return;
           }
 
-          const items = data[0]["events"];
+          const items = data[0]['events'];
 
           // console.log(items)
 
           //add these do data using hooks
           items.forEach((ele, index) => {
-            var events = ele.split(";");
+            var events = ele.split(';');
 
-            const coordinates = events[4].split(",");
+            const coordinates = events[4].split(',');
             coordinates[0].trim();
             coordinates[1].trim();
             const lat = parseFloat(coordinates[0]);
@@ -148,13 +148,13 @@ const App = () => {
 
             //plot the data
 
-            console.log("event items are ->>>> ", eventObject);
+            console.log('event items are ->>>> ', eventObject);
 
             setEventItem((oldEvents) => [...oldEvents, eventObject]);
           });
         });
       } else {
-        console.log("No events found, error!");
+        console.log('No events found, error!');
         setEventItem([]);
       }
     });
@@ -165,29 +165,29 @@ const App = () => {
     // backgroundColor: 'RGBA(20, 39, 59, 0.5)',
     height: `${(height - 228).toString()}px`,
     width: `${100}`,
-    position: "absolute",
-    top: "128px",
-    left: "28px",
-    overflow: "auto",
+    position: 'absolute',
+    top: '128px',
+    left: '28px',
+    overflow: 'auto',
   };
 
   var sliderPositionStyle = {
     // backgroundColor: 'RGBA(20, 39, 59, 0.5)',
     height: `100px`,
     width: `${100}`,
-    position: "absolute",
-    bottom: "28px",
-    left: "130px",
-    right: "130px",
+    position: 'absolute',
+    bottom: '28px',
+    left: '130px',
+    right: '130px',
   };
 
   var labelPositionStyle = {
     // backgroundColor: 'RGBA(20, 39, 59, 0.5)',
     height: `100px`,
     width: `${100}`,
-    position: "absolute",
-    top: "25px",
-    left: `${((width-350)/2).toString()}px`,
+    position: 'absolute',
+    top: '25px',
+    left: `${((width - 350) / 2).toString()}px`,
     // bottom: "28px",
     // left: "130px",
     // right: "130px",
@@ -202,7 +202,6 @@ const App = () => {
       />
 
       {/* Logo */}
-
       <a href="/" id="logo">
         <img src={logo} alt="logo" />
       </a>
@@ -238,7 +237,7 @@ const App = () => {
         <Drawer
           open={isOpen}
           onClose={toggleDrawer(false)}
-          anchor={"right"}
+          anchor={'right'}
           classes={{ paper: classes.paper }}
         >
           <Popper value={eventItems[focusIndex]} />
