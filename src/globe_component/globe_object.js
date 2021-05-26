@@ -25,7 +25,7 @@ const GlobeObject = ({globeEl, data, hadleLabelClick}) => {
       labelText="title"
       labelDotOrientation={() => "bottom"}
       labelSize={1}
-      labelColor={() => "rgb(255, 0, 0, 0.5)"}
+      labelColor={() => "rgba(20, 33, 61, 1)"}
       labelResolution={2}
       onLabelClick={(item) => hadleLabelClick(item)} //todo pass an unique key to the callback
     />
