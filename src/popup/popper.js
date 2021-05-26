@@ -16,11 +16,13 @@ const Popper = ({ value }) => {
   return (
     <Typography component="div">
       <Box
+        color="rgba(243, 163, 17, 1)"
         fontWeight="fontWeightBold"
         fontSize="24px"
         m={1}
         textAlign="center"
-        fontFamily="sans-serif"
+        fontFamily="Roboto"
+        letterSpacing="0.08rem"
       >
         {`${value.date}: `}
         {value.title}
@@ -35,7 +37,6 @@ const Popper = ({ value }) => {
         border="2px solid rgba(243, 163, 17, 1)"
         padding="1rem"
         fontWeight="fontWeightLight"
-        fontFamily="Helvetica Neue"
         fontSize="18px"
         m={3}
         lineHeight={1.5}

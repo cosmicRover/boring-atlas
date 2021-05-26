@@ -1,25 +1,25 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { TimelineConnector } from "@material-ui/lab";
-import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
-import CircularIcon from "./circular_icon";
-import icon1 from "../assets/icon1.png";
-import "../App.css";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { TimelineConnector } from '@material-ui/lab';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import CircularIcon from './circular_icon';
+import icon1 from '../assets/icon1.png';
+import '../App.css';
 
-import "./timeline.css";
+import './timeline.css';
 
 //TODO: re-design this to match provided design docs
 
-import Box from "@material-ui/core/Box";
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 500,
     color: 'white',
     margin: '1px',
-    fontSize: '5px',
+    fontSize: '6px',
   },
 });
 
@@ -39,13 +39,17 @@ function RenderItem({ values, onClicked }) {
           <div className="vertical-bar"></div>
           <div className={classes.root}>
             <Typography component="div">
-              <Box fontWeight="fontWeightBold" m={1}>
+              <Box
+                fontWeight="fontWeightBold"
+                fontFamily="Roboto"
+                letterSpacing="0.1rem"
+                m={1}
+              >
                 {item.date}
               </Box>
               <Box
-                fontWeight="fontWeightLight"
-                fontFamily="Montserrat"
-                fontSize="12px"
+                fontWeight="fontWeightRegular"
+                fontSize="16px"
                 m={1}
                 lineHeight={0.95}
               >

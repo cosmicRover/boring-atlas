@@ -19,7 +19,7 @@
   margin-top: 24px;
 }
 
-.popupStyle{
+.popupStyle {
   /* background: transparent; */
   color: brown;
   width: 350px;
@@ -63,3 +63,17 @@
   margin-left: -250px;
   color: rgba(243, 163, 17, 1);
 }
+
+/* Google Fonts Start */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Google Fonts End */

@@ -22,6 +22,7 @@ const useStyles = makeStyles({
     // marginLeft: '5px', //Aligning the text (when un-rotated)
     marginLeft: '-8px', //Aligning the text (rotated)
     transform: 'rotate(-45deg)',
+    fontWeight: 'fontWeightBold',
   },
 });
 //? Probably needs changes

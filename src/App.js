@@ -210,9 +210,10 @@ const App = () => {
         {/* Year Displayer */}
         <Typography component="div">
           <Box
-            fontWeight="fontWeightLight"
-            fontFamily="Montserrat"
-            fontSize="34px"
+            fontWeight="fontWeightBold"
+            letterSpacing="0.08rem"
+            fontFamily="Roboto"
+            fontSize="30px"
             m={1}
             lineHeight={0.95}
             color="RGBA(243, 163, 17, 1)"
