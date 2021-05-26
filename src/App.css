@@ -19,6 +19,13 @@
   margin-top: 24px;
 }
 
+.popupStyle{
+  /* background: transparent; */
+  color: brown;
+  width: 350px;
+  background-color: transparent;
+}
+
 /*customized scrollbar */
 *{
     -ms-overflow-style: auto;

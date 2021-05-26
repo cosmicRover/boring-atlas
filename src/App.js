@@ -5,12 +5,23 @@ import CustomizedTimeline from "./timeline_components/customized_timeline";
 import DiscreteSlider from "./slider/discrete_slider";
 import useWindowDimensions from "./services/useWindowDimensions";
 import logo from "./assets/logo.svg";
+import Popper from "./popup/popper";
+import "react-sliding-pane/dist/react-sliding-pane.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+
+const useStyles = makeStyles({
+  paper: {
+    background: "RGBA(20, 39, 59, 0.5)",
+    color: "white",
+    width: "517px",
+    height: "50%",
+  },
+});
 
 const App = () => {
   const { height, width } = useWindowDimensions();
   const [eventItems, setEventItem] = useState([]);
-
-  const [mapMarkers, setMapMarkers] = useState([]);
 
   const globeEl = useRef();
 
@@ -20,8 +31,6 @@ const App = () => {
     globeEl.current.controls().autoRotateSpeed = 0.1;
 
     fetchEvents("3000BCE");
-
-    //use this to zoom into location
   }, []);
 
   function handleOnPressed(index) {
@@ -29,13 +38,44 @@ const App = () => {
     focusOnEvent(item.lat, item.lon, 0.5);
   }
 
-  //reacts to sldier value change event
-  function getSliderValue(item) {
-    console.log(item);
-  }
+  //TODO: Oncle clicked on the label, get the desired item
+  const [focusIndex, setFocusIndex] = useState(0);
 
   function handleOnLabelClicked(item) {
-    console.log(item);
+    console.log(`this is the clicked item: `, item);
+    const index = search(item.title, eventItems);
+    console.log(item, eventItems[index]);
+    setFocusIndex(index);
+
+    openDrawer(true);
+  }
+
+  function search(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].title === nameKey) {
+        return i;
+      }
+    }
+  }
+
+  //this is for slide-in window on the right side
+
+  //state and function for popup window
+  const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setIsOpen(open);
+  };
+
+  function openDrawer(value) {
+    setIsOpen(value);
   }
 
   //zooms in to a particular lat, lon on the globe
@@ -45,7 +85,6 @@ const App = () => {
   }
 
   //helper fucntion to plot the data
-
   function fetchEvents(era) {
     console.log(`fetching era: ${era}`);
     setEventItem([]);
@@ -64,7 +103,6 @@ const App = () => {
     ).then(function (response) {
       if (response.status === 200) {
         response.json().then(function (data) {
-
           //avoids populating timeline for empty events
           if (data.length === 0) {
             setEventItem([]);
@@ -110,6 +148,7 @@ const App = () => {
     });
   }
 
+  //timeline and slider css
   var timelinePositionStyle = {
     backgroundColor: "RGBA(20, 39, 59, 0.5)",
     height: `${(height - 228).toString()}px`,
@@ -148,6 +187,16 @@ const App = () => {
         <DiscreteSlider getSliderValue={(era) => fetchEvents(era)} />
       </div>
 
+      <div>
+        <Drawer
+          open={isOpen}
+          onClose={toggleDrawer(false)}
+          anchor={"right"}
+          classes={{ paper: classes.paper }}
+        >
+          <Popper value={eventItems[focusIndex]} />
+        </Drawer>
+      </div>
     </div>
   );
 };
