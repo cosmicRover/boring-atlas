@@ -12,9 +12,6 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     maxWidth: 500,
-
-    color: 'white',
-
     color: 'white',
     margin: '1px',
     fontSize: '5px',

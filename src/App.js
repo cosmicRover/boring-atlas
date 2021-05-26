@@ -29,6 +29,11 @@ const App = () => {
     focusOnEvent(item.lat, item.lon, 0.5);
   }
 
+  //reacts to sldier value change event
+  function getSliderValue(item) {
+    console.log(item);
+  }
+
   function handleOnLabelClicked(item) {
     console.log(item);
   }
@@ -42,7 +47,7 @@ const App = () => {
   //helper fucntion to plot the data
 
   function fetchEvents(era) {
-    console.log(era);
+    console.log(`fetching era: ${era}`);
     setEventItem([]);
 
     const requestOptions = {
@@ -59,6 +64,13 @@ const App = () => {
     ).then(function (response) {
       if (response.status === 200) {
         response.json().then(function (data) {
+
+          //avoids populating timeline for empty events
+          if (data.length === 0) {
+            setEventItem([]);
+            return;
+          }
+
           const items = data[0]["events"];
 
           // console.log(items)
@@ -116,6 +128,7 @@ const App = () => {
     bottom: "28px",
     left: "130px",
     right: "130px",
+    // display: "flex",
   };
 
   return (
@@ -125,6 +138,7 @@ const App = () => {
         data={eventItems}
         hadleLabelClick={(e) => handleOnLabelClicked(e)}
       />
+
       <div style={timelinePositionStyle}>
         <CustomizedTimeline
           data={eventItems}
@@ -132,8 +146,9 @@ const App = () => {
         />
       </div>
       <div style={sliderPositionStyle}>
-        <DiscreteSlider />
+        <DiscreteSlider getSliderValue={(era) => fetchEvents(era)} />
       </div>
+
     </div>
   );
 };
