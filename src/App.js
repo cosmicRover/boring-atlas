@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import GlobeObject from "./globe_component/globe_object";
@@ -19,6 +20,15 @@ const useStyles = makeStyles({
   },
 });
 
+import React, { useState, useRef, useEffect } from 'react';
+import './App.css';
+import GlobeObject from './globe_component/globe_object';
+import CustomizedTimeline from './timeline_components/customized_timeline';
+import DiscreteSlider from './slider/discrete_slider';
+import useWindowDimensions from './services/useWindowDimensions';
+import logo from './assets/ba_logo.png';
+
+
 const App = () => {
   const { height, width } = useWindowDimensions();
   const [eventItems, setEventItem] = useState([]);
@@ -31,6 +41,7 @@ const App = () => {
     globeEl.current.controls().autoRotateSpeed = 0.1;
 
     fetchEvents("3000BCE");
+
   }, []);
 
   function handleOnPressed(index) {
@@ -90,7 +101,7 @@ const App = () => {
     setEventItem([]);
 
     const requestOptions = {
-      method: "POST",
+      method: 'POST',
       // headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
         era: era, //get era from the slider
@@ -98,7 +109,7 @@ const App = () => {
     };
 
     fetch(
-      "https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook",
+      'https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/boring-atlas-rest-api-hqzzz/service/boring-atlas-data-endpoint/incoming_webhook/boring-atlas-endpoint-webhook',
       requestOptions
     ).then(function (response) {
       if (response.status === 200) {
@@ -109,15 +120,15 @@ const App = () => {
             return;
           }
 
-          const items = data[0]["events"];
+          const items = data[0]['events'];
 
           // console.log(items)
 
           //add these do data using hooks
           items.forEach((ele, index) => {
-            var events = ele.split(";");
+            var events = ele.split(';');
 
-            const coordinates = events[4].split(",");
+            const coordinates = events[4].split(',');
             coordinates[0].trim();
             coordinates[1].trim();
             const lat = parseFloat(coordinates[0]);
@@ -136,13 +147,13 @@ const App = () => {
 
             //plot the data
 
-            console.log("event items are ->>>> ", eventObject);
+            console.log('event items are ->>>> ', eventObject);
 
             setEventItem((oldEvents) => [...oldEvents, eventObject]);
           });
         });
       } else {
-        console.log("No events found, error!");
+        console.log('No events found, error!');
         setEventItem([]);
       }
     });
@@ -150,23 +161,23 @@ const App = () => {
 
   //timeline and slider css
   var timelinePositionStyle = {
-    backgroundColor: "RGBA(20, 39, 59, 0.5)",
+    // backgroundColor: 'RGBA(20, 39, 59, 0.5)',
     height: `${(height - 228).toString()}px`,
     width: `${100}`,
-    position: "absolute",
-    top: "28px",
-    left: "28px",
-    overflow: "auto",
+    position: 'absolute',
+    top: '128px',
+    left: '28px',
+    overflow: 'auto',
   };
 
   var sliderPositionStyle = {
-    backgroundColor: "RGBA(20, 39, 59, 0.5)",
+    // backgroundColor: 'RGBA(20, 39, 59, 0.5)',
     height: `100px`,
     width: `${100}`,
-    position: "absolute",
-    bottom: "28px",
-    left: "130px",
-    right: "130px",
+    position: 'absolute',
+    bottom: '28px',
+    left: '130px',
+    right: '130px',
   };
 
   return (
@@ -176,6 +187,16 @@ const App = () => {
         data={eventItems}
         hadleLabelClick={(e) => handleOnLabelClicked(e)}
       />
+
+      {/* Logo */}
+      <a href="/" id="logo">
+        <img src={logo} alt="logo" />
+      </a>
+
+      {/* Year Displayer */}
+      <div id="year">
+        <h1>Current Year: 3000 BC</h1>
+      </div>
 
       <div style={timelinePositionStyle}>
         <CustomizedTimeline
@@ -187,6 +208,7 @@ const App = () => {
         <DiscreteSlider getSliderValue={(era) => fetchEvents(era)} />
       </div>
 
+
       <div>
         <Drawer
           open={isOpen}
@@ -197,6 +219,7 @@ const App = () => {
           <Popper value={eventItems[focusIndex]} />
         </Drawer>
       </div>
+
     </div>
   );
 };
